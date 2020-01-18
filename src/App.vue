@@ -10,27 +10,42 @@
         ></v-img>
       </v-flex>
       <v-tabs fixed-tabs background-color="orange" dark>
-        <v-tab v-for="(tab, index) in tabs" :key="index">
-          {{ tab }}
+        <v-tab
+          v-for="(tab, index) in tabs"
+          :key="index"
+          @click="tabSelected = index"
+        >
+          {{ tab.name }}
         </v-tab>
       </v-tabs>
-      <KOMClasification />
+      <KOMClasification v-show="tabSelected == 0" />
+      <Segments v-show="tabSelected == 1" />
+      <Stats v-show="tabSelected == 2" />
     </v-content>
   </v-app>
 </template>
 
 <script>
 import KOMClasification from "./components/KOMClasification";
+import Segments from "./components/Segments";
+import Stats from "./components/Stats";
 
 export default {
   name: "App",
 
   components: {
-    KOMClasification
+    KOMClasification,
+    Segments,
+    Stats
   },
 
   data: () => ({
-    tabs: ["ClasificaKOM", "Segmentos recomendados", "Estadísticas"]
+    tabs: [
+      { name: "ClasificaKOM" },
+      { name: "Segmentos recomendados" },
+      { name: "Estadísticas" }
+    ],
+    tabSelected: 0
   })
 };
 </script>
