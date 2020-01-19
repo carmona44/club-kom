@@ -3,7 +3,7 @@
     <v-content>
       <v-flex xs12>
         <v-img
-          :src="require('@/assets/logo.svg')"
+          :src="this.$store.state.club.logo"
           class="my-3"
           contain
           height="200"
